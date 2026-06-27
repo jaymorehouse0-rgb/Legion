@@ -1,5 +1,5 @@
 {
-    "version": "1.0.4",
+    "version": "1.0.3",
     "notes": "Here's what was updated and why:
 agents/base_agent.py — NEW FILE
 
