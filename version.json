@@ -1,5 +1,40 @@
 {
     "version": "1.0.4",
-    "notes": "Initial release of Legion AI Workspace.",
+    "notes": "Here's what was updated and why:
+agents/base_agent.py — NEW FILE
+
+Shared foundation all agents now inherit from. Provides api_core, logger, _invoke(), _stream(), and _clean_markdown() so none of that is duplicated across agents.
+agents/chat.py — Major update
+
+Now inherits BaseAgent. Routing fixed with a 3-tier priority: general keywords checked first (preventing false code hits like "explain what a class is"), then code keywords, then a lightweight classifier prompt for short ambiguous input — no more brittle keyword-only routing.
+agents/planner.py — Minor update
+
+Now inherits BaseAgent. Removed duplicated boilerplate, uses _invoke() wrapper.
+agents/builder.py — Major update
+
+Now inherits BaseAgent. Multi-file edits no longer ask the model for one giant JSON blob. Instead it extracts file paths from the edit plan and generates each file in a separate sequential call — far more reliable with local models. JSON approach is kept as a last-resort fallback only. _clean_markdown removed since it lives in BaseAgent now.
+agents/architect.py — Medium update
+
+Now inherits BaseAgent. Dual-audit now uses two different prompts (logic correctness vs. runtime safety) so the two reviewers actually catch different things. Lint expanded to also catch raise NotImplementedError and ellipsis-only stubs, not just TODO and pass.
+config.py — Medium update
+
+Model matrix is now lazy via _LazyModelMatrix — it defers the Ollama query until first access instead of at import time, so a cold start no longer silently falls back to defaults. num_gpu: 99 magic number replaced with a named ALL_GPUS = 99 constant with a comment explaining it.
+main.py — Medium update
+
+ensure_ollama_running() now has a proper retry loop (polls every second up to max_wait=15s), a FileNotFoundError catch for when Ollama isn't installed, and named helper functions _ping_ollama() and _schedule_warmup(). Full logging infrastructure added throughout — all silent failures now produce log output. Bare except: pass blocks replaced with typed exception handling.
+workspace_sandbox.py — Medium update
+
+discard_sandbox bare except: pass replaced with a proper except Exception as exc that logs a warning, so permission errors and locked files are no longer swallowed silently. All functions now log their actions at INFO/WARNING/ERROR level.
+
+agents/chat.py
+
+Removed _classify_intent() method entirely — eliminates a full model round-trip on every ambiguous chat message
+Routing simplified to a clean 2-step keyword check, defaulting to chat model with no extra calls
+_MAX_MEMORY trimmed from 6 pairs to 4 — shorter history block = smaller prompt = faster generation
+
+config.py
+
+CTX_BY_ROLE["chat"] dropped from 2048 → 1024 — context window size directly affects how much memory bandwidth the GPU uses per token
+NUM_PREDICT["chat"] dropped from 1024 → 512 — halves the worst-case ceiling on chat response length; normal replies never hit 512 tokens anyway.",
     "installer_url": "https://github.com/jaymorehouse0-rgb/Legion/releases/download/Update/LegionInstaller.exe"
 }
