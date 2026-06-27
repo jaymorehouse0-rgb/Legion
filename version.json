@@ -1,5 +1,5 @@
 {
-    "version": "1.0.8",
+    "version": "1.0.9",
     "notes": "New File - base_agent.py|Updated - chat.py: faster routing, less memory|Updated - planner.py: inherits BaseAgent|Updated - builder.py: sequential file generation|Updated - architect.py: dual-audit, better lint|Updated - config.py: lazy model matrix, faster chat|Updated - main.py: Ollama auto-start, full logging|Updated - workspace_sandbox.py: proper error logging|Updated - installer.py: copies _internal folder",
     "installer_url": "https://github.com/jaymorehouse0-rgb/Legion/releases/download/Update/LegionInstaller.exe"
 }
