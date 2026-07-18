@@ -1,5 +1,5 @@
 {
-    "version": "1.0.13",
+    "version": "1.0.11",
     "notes": "Brand new look \u2014 Legion now has its own dark themed window, no more standard Windows titlebar|Cleaner layout with separate Chat, Build, and Edit tabs|New file tree sidebar for browsing your workspace files|New Downloads menu with Models and Addons|Model browser \u2014 see available Ollama models, click one to download it with a live progress bar|Models you already have are marked as installed|Addons coming soon|Chat history is now saved and restored between sessions|Connection status light shows when Ollama is ready|Faster startup|New installer with the same Legion look|Lots of stability fixes and general improvements",
     "installer_url": "https://github.com/jaymorehouse0-rgb/Legion/releases/download/Update/LegionInstaller.exe"
 }
