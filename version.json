@@ -1,4 +1,4 @@
 {
-    "version":"1.0.12","notes":"Updates now install automatically with one click — no separate installer window|Single main chat window with a New Project button to start builds|Right-click any file in the tree to edit it|Stability fixes and general improvements",
+    "version":"1.0.14","notes":"Updates now install automatically with one click — no separate installer window|Single main chat window with a New Project button to start builds|Right-click any file in the tree to edit it|Stability fixes and general improvements",
     "installer_url": "https://github.com/jaymorehouse0-rgb/Legion/releases/download/update/Legion.zip"
 }
